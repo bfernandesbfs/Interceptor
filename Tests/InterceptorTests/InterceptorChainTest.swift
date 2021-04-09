@@ -49,9 +49,38 @@ final class InterceptorChainTest: XCTestCase {
         XCTAssertTrue(outNext.wrapperValue is AgentInterceptor)
     }
 
+    func testChainMixCheck() throws {
+        let expectation = XCTestExpectation(description: #function)
+        let outBlock = BlockInterceptorSpy()
+        sut.add(outBlock)
+
+        let session = URLSessionStub()
+        let url = try XCTUnwrap(URL(string: "http://test.com"))
+        var request = URLRequest(url: url)
+        try sut.applyRequest(&request)
+
+        var blockCount = 0
+        let task = session.dataTask(with: url, completionHandler: sut.applyResponse { _, _, _ in
+            blockCount += 1
+            expectation.fulfill()
+        })
+        task.resume()
+
+        wait(for: [expectation], timeout: 1.0)
+
+        let header = try XCTUnwrap(request.allHTTPHeaderFields)
+        XCTAssertEqual(header.count, 3)
+        XCTAssertEqual(header["UserAgent"], "version:0.0.1,test:Agent,device:iPhone")
+        XCTAssertEqual(header["Authorization"], "Bearer HASH-test-1234")
+        XCTAssertEqual(header["Device"], "id-1234")
+        XCTAssertEqual(blockCount, 1)
+        XCTAssertEqual(outBlock.interceptCount, 1)
+    }
+
     static var allTests = [
         ("testAdd", testAdd),
         ("testClean", testClean),
-        ("testChainCheck", testChainCheck)
+        ("testChainCheck", testChainCheck),
+        ("testChainMixCheck", testChainMixCheck)
     ]
 }

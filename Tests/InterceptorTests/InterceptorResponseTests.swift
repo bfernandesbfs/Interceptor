@@ -39,6 +39,8 @@ final class InterceptorResponseTests: XCTestCase {
         let expectation = XCTestExpectation(description: #function)
         sut.clean()
 
+        XCTAssertNil(sut.current)
+
         let session = URLSessionStub()
         let url = try XCTUnwrap(URL(string: "http://test.com"))
 
