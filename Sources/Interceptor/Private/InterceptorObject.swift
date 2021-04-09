@@ -1,7 +1,7 @@
 import Foundation
 import Responder
 
-internal struct InterceptorObject: Responder {
+internal struct InterceptorObject<Type>: Responder {
     var nextResponder: Responder?
-    let wrapperValue: RequestInterceptor
+    let wrapperValue: Type
 }
