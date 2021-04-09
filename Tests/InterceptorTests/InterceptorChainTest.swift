@@ -52,6 +52,6 @@ final class InterceptorChainTest: XCTestCase {
     static var allTests = [
         ("testAdd", testAdd),
         ("testClean", testClean),
-        ("testChainCheck", testChainCheck),
+        ("testChainCheck", testChainCheck)
     ]
 }

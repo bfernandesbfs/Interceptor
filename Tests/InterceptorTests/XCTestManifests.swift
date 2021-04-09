@@ -5,7 +5,7 @@ public func allTests() -> [XCTestCaseEntry] {
     return [
         testCase(InterceptorChainTest.allTests),
         testCase(InterceptorRequestTests.allTests),
-        testCase(InterceptorResponseTests.allTests),
+        testCase(InterceptorResponseTests.allTests)
     ]
 }
 #endif

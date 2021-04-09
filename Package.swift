@@ -6,7 +6,7 @@ let package = Package(
     products: [
         .library(
             name: "Interceptor",
-            targets: ["Interceptor"]),
+            targets: ["Interceptor"])
     ],
     dependencies: [
         .package(url: "https://github.com/bfernandesbfs/Responder.git", .upToNextMajor(from: "0.0.1"))
@@ -17,6 +17,6 @@ let package = Package(
             dependencies: ["Responder"]),
         .testTarget(
             name: "InterceptorTests",
-            dependencies: ["Interceptor"]),
+            dependencies: ["Interceptor"])
     ]
 )

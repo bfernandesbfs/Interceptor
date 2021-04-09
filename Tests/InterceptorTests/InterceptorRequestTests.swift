@@ -37,7 +37,7 @@ final class InterceptorRequestTests: XCTestCase {
 
     static var allTests = [
         ("testApply", testApply),
-        ("testApplyWhenEmpty", testApplyWhenEmpty),
+        ("testApplyWhenEmpty", testApplyWhenEmpty)
     ]
 }
 

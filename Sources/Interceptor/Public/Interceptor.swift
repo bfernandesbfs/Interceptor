@@ -30,8 +30,8 @@ public class Interceptor {
             try interceptor.wrapperValue.intercept(&request)
         }
     }
-    
-    public func applyResponse(completionHandler: @escaping SessionComppletion) -> SessionComppletion  {
+
+    public func applyResponse(completionHandler: @escaping SessionComppletion) -> SessionComppletion {
         return { data, response, error in
             self.test { (interceptor: InterceptorObject<ResponseInterceptor>) in
                 interceptor.wrapperValue.intercept(data, response: response, error: error)
