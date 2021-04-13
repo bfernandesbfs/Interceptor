@@ -1,12 +1,12 @@
 # Interceptor
 
-Interceptor is a Package that tries to resolver problem when need to have some configurations to network API and your response. We need to intercept some information or add to global configurations, of basis form centralized with based on principle single responsibility, the idea behind this package is simple, but the implementation is a bit manual, look the image below.
+Interceptor is a Package that tries to solve problems when need to have some configurations to network API and its response. We need to intercept some information or add global configurations in centralized form based on the principle of single responsibility. The idea behind this package is simple, but the implementation requires a bit of preparation, look the image below.
 
 ![alt text](./Docs/Img/Img01.png)
  
- In this case, Interceptor is applied after URLRequest was created and applied after URLSession callback
+In this case, Interceptor is applied after `URLRequest` is created and applied after `URLSession` callback
  
-## How to work this?
+## How does this work?
 
 At first, after setup was applied in your code, we need to create interceptor objects based on two protocol `ResquestInterceptor` and `ResponseInterceptor`   
 
@@ -40,9 +40,9 @@ class BlockInterceptorSpy: ResponseInterceptor {
 
 ```
 
-### Adding on linked chain 
+### Adding on linked list 
 
-After this, we can add these objects to linked chain [(Look implementation here)](https://github.com/bfernandesbfs/Responder) based on **Responder package**, we going to add each object througt function `Interceptor.add`
+After this, we can add these objects to linked list [(Look implementation here)](https://github.com/bfernandesbfs/Responder) based on **Responder package**, we are going to add each object through the function `Interceptor.add(_ :)`
 
 ```swift
 
@@ -53,9 +53,9 @@ interceptor.add(TokenInterceptor()).add(BlockInterceptorSpy())
 
 ### Applying in your code
 
-It's very simple, look code below:
+It's very simple, look at the code bellow:
 
-Here, we apply request interceptor after creating `URLRequest`,  function `applyRequest` will walk each object added that correlated with `ResquestInterceptor` and will change this with applying new data or override some data of your implementation
+Here, we apply request interceptor after creating `URLRequest`, the function `applyRequest` will go through each object added and correlated with `ResquestInterceptor` and will change or apply some data to it.
 
 ```swift
 
@@ -65,7 +65,7 @@ try interceptor.applyRequest(&request)
 
 ```
 
-next point is, add the interceptor after callback URLSession in your code. This point simplest easy, just put function `applyResponse` on property `completionhandler`, your types are equals.
+next step, add the interceptor after URLSession's callback in your code. This point is really easy, just put function `applyResponse` on property `completionhandler`, its types are equals.
 
 ```swift
 
