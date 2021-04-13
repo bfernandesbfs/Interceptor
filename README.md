@@ -1,5 +1,7 @@
 # Interceptor
 
+[![Swift](https://github.com/bfernandesbfs/Interceptor/actions/workflows/swift.yml/badge.svg)](https://github.com/bfernandesbfs/Interceptor/actions/workflows/swift.yml)
+
 Interceptor is a Package that tries to solve problems when need to have some configurations to network API and its response. We need to intercept some information or add global configurations in centralized form based on the principle of single responsibility. The idea behind this package is simple, but the implementation requires a bit of preparation, look the image below.
 
 ![alt text](./Docs/Img/Img01.png)

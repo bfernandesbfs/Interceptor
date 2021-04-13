@@ -3,5 +3,7 @@ import XCTest
 import InterceptorTests
 
 var tests = [XCTestCaseEntry]()
-tests += InterceptorTests.allTests()
+tests += InterceptorChainTest.allTests()
+tests += InterceptorRequestTests.allTests()
+tests += InterceptorResponseTests.allTests()
 XCTMain(tests)
